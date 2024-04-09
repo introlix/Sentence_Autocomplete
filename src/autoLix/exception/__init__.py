@@ -1,6 +1,6 @@
 import os
 import sys
-from autoLix.logger import logging
+from src.autoLix.logger import logging
 
 def error_message_detail(error, error_detail):
     """

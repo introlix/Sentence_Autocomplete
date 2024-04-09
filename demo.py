@@ -1,7 +1,7 @@
 import sys
-from autoLix.logger import logging
-from autoLix.exception import CustomException
-from autoLix.configuration.gcloud_syncer import GCloudSync
+from src.autoLix.logger import logging
+from src.autoLix.exception import CustomException
+from src.autoLix.configuration.gcloud_syncer import GCloudSync
 
 obj = GCloudSync()
 
