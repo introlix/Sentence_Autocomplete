@@ -1,4 +1,5 @@
 import os
+from google.cloud import storage
 
 class GCloudSync:
 
@@ -11,8 +12,13 @@ class GCloudSync:
             filepath (str): Local file path
             filename (str): Local file name
        """
-       command = f"gsutil cp {filepath}/{filename} gs://{gcp_bucket_url}/"
-       os.system(command)
+       client = storage.Client()
+       bucket = client.get_bucket(gcp_bucket_url)
+       blob = bucket.blob(filename)
+
+       bucket.blob(filename).upload_from_filename(filepath)
+    #    command = f"gsutil cp {filepath}/{filename} gs://{gcp_bucket_url}/"
+    #    os.system(command)
 
     # write a function to sync folder from gcloud
     def sync_folder_from_gcloud(self, gcp_bucket_url, filename, destination):

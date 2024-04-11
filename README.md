@@ -6,7 +6,7 @@ To use this repository run the following command
 
 ```shell
 pip install -r requirements.txt
-python app.py
+python main.py
 ```
 
 # License

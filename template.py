@@ -8,6 +8,7 @@ project_name = "autoLix"
 
 list_of_files = [
     f"src/{project_name}/components/__init__.py",
+    f"src/{project_name}/components/data_pusher.py",
     f"src/{project_name}/components/data_ingestion.py",
     f"src/{project_name}/components/data_cleaning.py",
     f"src/{project_name}/components/data_transformation.py",
@@ -29,6 +30,7 @@ list_of_files = [
     f"data_gathering/__init__.py",
     f"data_gathering/data.py",
     "app.py",
+    "main.py",
     "demo.py",
     "requirements.txt",
     "Dockerfile",
