@@ -59,7 +59,7 @@ if __name__ == '__main__':
     # for title in list_of_wiki_data:
     #    fetch_data_from_wikipedia(title)
 
-    list_of_reddit_subreddit = ['Programming', 'MachineLearning', 'deeplearning', 'webdev', 'gamming', 'blender', 'AskReddit']
+    list_of_reddit_subreddit = ['Programming', 'MachineLearning', 'deeplearning', 'webdev', 'blender', 'AskReddit']
     more_subreddit = ['science', 'askscience', 'space']
 
     for subreddit in more_subreddit:

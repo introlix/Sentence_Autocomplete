@@ -23,6 +23,9 @@ class DataPusher():
 
     
     def ziping_data(self):
+        """
+        Function to conpresses data into zip file
+        """
         try:
             logging.info("Start Ziping The Data")
 
@@ -44,6 +47,9 @@ class DataPusher():
             raise CustomException(e, sys) from e
         
     def upload_data(self):
+        """
+        Function to upload zip data into gcloud
+        """
         try:
             logging.info("Uploading Folder To Gcloud")
 
