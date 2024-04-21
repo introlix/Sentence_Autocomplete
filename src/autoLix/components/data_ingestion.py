@@ -8,22 +8,33 @@ from src.autoLix.entity.config_entity import DataIngestionConfig
 from src.autoLix.entity.artifact_entity import DataIngestionArtifact
 
 class DataIngestion:
+    """
+    Class For Fetching Data From GCloud
+    """
     def __init__(self, data_ingestion_config : DataIngestionConfig):
         self.data_ingestion_config = data_ingestion_config
         self.gcloud = GCloudSync()
 
     def get_data_from_gcloud(self) -> None:
+        """
+        Function to get data from gcloud
 
+        Args:
+            None
+
+        Returns:
+            None
+        """
         try:
             logging.info("Entered the get_data_from_gcloud method of Data ingestion class")
-
             os.makedirs(self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR, exist_ok=True)
 
-            self.gcloud.sync_folder_from_gcloud(
-                self.data_ingestion_config.BUCKET_NAME,
-                self.data_ingestion_config.ZIP_FILE_NAME,
-                self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR
-            )
+            file_dir = os.path.join(self.data_ingestion_config.DATA_INGESTION_ARTIFACTS_DIR, self.data_ingestion_config.ZIP_FILE_NAME)
+
+            self.gcloud.sync_folder_from_gcloud(self.data_ingestion_config.BUCKET_NAME,
+                                                self.data_ingestion_config.ZIP_FILE_NAME,
+                                                file_dir,
+                                                )
 
             logging.info("Exited the get_data_from_gcloud method of Data ingestion class")
 
@@ -31,6 +42,15 @@ class DataIngestion:
             raise CustomException(e, sys) from e
         
     def unziping_data(self):
+        """
+        Function to unzip the data
+
+        Args:
+            None
+        
+        Returns:
+            Data Dir
+        """
         try:
             logging.info("Entered the unziping_data method of Data ingestion class")
 
@@ -45,10 +65,18 @@ class DataIngestion:
             raise CustomException(e, sys) from e
         
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
+        """
+        Function to initiate data ingestion
+
+        Args:
+            None
+        Returns:
+            DataIngestionArtifact: Contains all data file with path
+        """
         try:
             logging.info("Entered the initiate_data_ingestion method of Data ingestion class")
             self.get_data_from_gcloud()
-            logging.inof("Fetched the data from gcloud")
+            logging.info("Fetched the data from gcloud")
             reddit_data_file_path, wiki_data_file_path, external_data_file_path = self.unziping_data()
             logging.info("Unziped the data")
 

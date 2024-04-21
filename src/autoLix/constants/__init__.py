@@ -5,8 +5,8 @@ from datetime import datetime
 # Common Constants
 TIMESTAMP: str = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 ARTIFACTS_DIR = os.path.join("artifacts", TIMESTAMP)
-BUCKET_NAME = 'inbound-density-419701.appspot.com'
-ZIP_FILE_NAME = 'dataset.zip'
+BUCKET_NAME = "inbound-density-419701.appspot.com"
+ZIP_FILE_NAME = 'data_file.zip'
 
 
 # Data Pusher Constants

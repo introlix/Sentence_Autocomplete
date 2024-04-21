@@ -1,18 +1,11 @@
-# import sys
-# from src.autoLix.logger import logging
-# from src.autoLix.exception import CustomException
-# from src.autoLix.configuration.gcloud_syncer import GCloudSync
+import os
+from src.autoLix.configuration.gcloud_syncer import GCloudSync
+from src.autoLix.entity.config_entity import DataIngestionConfig
 
-# obj = GCloudSync()
+obj = GCloudSync()
+obj2 = DataIngestionConfig()
 
-# obj.sync_folder_from_gcloud("inbound-density-419701.appspot.com", "data_file.zip", "download/dataset.zip")
+os.makedirs(obj2.DATA_INGESTION_ARTIFACTS_DIR, exist_ok=True)
+print(obj2.DATA_INGESTION_ARTIFACTS_DIR)
+obj.sync_folder_from_gcloud(obj2.BUCKET_NAME, obj2.ZIP_FILE_NAME, obj2.DATA_INGESTION_ARTIFACTS_DIR)
 
-from torchtext.data.utils import get_tokenizer
-
-text = "This is a text"
-
-tokenizer = get_tokenizer('basic_english')
-
-token = tokenizer(text)
-
-print(token)

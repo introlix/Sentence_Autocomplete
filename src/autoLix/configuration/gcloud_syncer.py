@@ -1,4 +1,5 @@
 import os
+import subprocess
 from google.cloud import storage
 
 class GCloudSync:
@@ -30,5 +31,12 @@ class GCloudSync:
             filename (str): Local file name
                 destination (str): Local file path
          """
-         command = f"gsutil cp gs://{gcp_bucket_url}/{filename} {destination}/{filename}"
-         os.system(command)
+         try:
+             client = storage.Client()
+
+             bucket = client.bucket(gcp_bucket_url)
+             blob = bucket.blob(filename)
+
+             blob.download_to_filename(destination)
+         except Exception as ex:
+            print(f"An unexpected error occurred: {ex}")
